@@ -1,0 +1,7 @@
+id,last_poll_date,trump,biden,spread_name,spread_value,state,date,dem_poll_advantage
+7907,3/24,49.0,44.5,Trump,4.5,Arizona,2024-04-04,-4.5
+7747,3/24,49.4,45.6,Trump,3.8,Georgia,2024-04-04,-3.8
+7953,3/24,48.0,45.2,Trump,2.8,Michigan,2024-04-04,-2.8
+7826,3/24,47.5,44.3,Trump,3.2,Nevada,2024-04-04,-3.2
+7892,3/31,46.2,46.3,Biden,0.1,Pennsylvania,2024-04-04,0.1
+7398,3/24,47.8,47.2,Trump,0.6,Wisconsin,2024-04-04,-0.6
