@@ -14,7 +14,7 @@ df_2024.set_index('state_year', inplace=True)
 state_poll_dict = df_2024['dem_poll_advantage'].to_dict()
 state_poll_dict = {key.split("_")[0]: value for key, value in state_poll_dict.items()}
 
-st.write("Succesfully setup CI/CD")
+st.write("Succesfully setup CI/CD *****")
 st.write("""
 # Electify
 ## 2024 Election Forecasting
