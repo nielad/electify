@@ -16,6 +16,7 @@ state_poll_dict = {key.split("_")[0]: value for key, value in state_poll_dict.it
 
 st.write("Succesfully setup CI/CD ***********")
 st.write("all your base are belong to us")
+st.write("you have no chance to survive make your time")
 st.write("""
 # Electify
 ## 2024 Election Forecasting
