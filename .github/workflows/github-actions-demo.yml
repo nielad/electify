@@ -16,6 +16,9 @@ jobs:
       run: docker build -t github-actions-test-image .
 
     - name: Run Docker Container
-      run: docker run -d --name github-actions-test-container github-actions-test-image
+      run: docker run -it --entrypoint /bin/bash --name github-actions-test-container github-actions-test-image
+
+
+      #run: docker run -d --name github-actions-test-container github-actions-test-image
 
 
