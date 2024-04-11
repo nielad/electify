@@ -13,6 +13,7 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 	
 RUN chmod +x add_cron_job.sh
+RUN service cron start && add_cron_job.sh
 
  
 
