@@ -15,7 +15,6 @@ RUN apt-get update \
 RUN chmod +x add_cron_job.sh
 
 
- 
 
 #CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 CMD ["sh", "-c", "service cron start && /src/add_cron_job.sh && streamlit run app.py --server.port=8501 --server.address=0.0.0.0"]
