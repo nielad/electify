@@ -16,14 +16,12 @@ df_2024.set_index('state_year', inplace=True)
 state_poll_dict = df_2024['dem_poll_advantage'].to_dict()
 state_poll_dict = {key.split("_")[0]: value for key, value in state_poll_dict.items()}
 
-st.write("Succesfully setup CI/CD ***********")
-st.write("all your base are belong to us")
-st.write("you have no chance to survive make your time***")
-st.write("badger, badger, badger...")
-st.write("...mushroom, mushroom!")
+
+st.image('images/android-chrome-192x192.png')
+
 st.write("""
 # Electify
-## 2024 Election Forecasting
+## 2024 Presidential Election Forecasting
 
 """)
 
@@ -142,7 +140,6 @@ def load_model():
 	return rfc
 	
 st.sidebar.header('Polling Spread')
-st.sidebar.image('images/android-chrome-192x192.png')
 arizona, georgia, michigan, nevada, pennsylvania, wisconsin = create_polling_spread_input()
 user_input_raw_list = [arizona, georgia, michigan, nevada, pennsylvania, wisconsin]
 
@@ -164,7 +161,10 @@ df_2024_predictions = pd.DataFrame(predict_prob, columns=['biden', 'trump'], ind
 df_2024_predictions.index = df_2024_predictions.index.str.replace('_2024', '')
 df_2024_predictions.index.name = ''
 
-st.write(""" ### Probability of winning each state""")
+st.write(""" ### State Probabilities""")
+st.write("The default values are based on real time polling average by state.")
+st.write("Open the sidebar and adjust the polling spread sliders to see how the odds are impacted")
+ 
 
 df_2024_predictions_display = df_2024_predictions.applymap(to_percent_up)
 
@@ -176,7 +176,21 @@ trump_probs = df_2024_predictions['trump']
 biden_paths = ast.literal_eval(df_paths_to_victory[df_paths_to_victory['candidate'] == 'Biden']['paths_to_victory'].iloc[0])
 biden_probs = df_2024_predictions['biden']
 
-st.write(""" ### Probability of winning the presidential election""")
+st.write(""" ### Total chances of winning""")
 
 st.write("Trump probability of winning: " + str(to_percent_up(find_total_prob_of_winning(trump_paths, trump_probs))))
 st.write("Biden probability of winning: " + str(to_percent_up(find_total_prob_of_winning(biden_paths, biden_probs))))
+
+def create_faq(question, answer):
+
+    with st.expander(question):
+        st.write(answer)
+    return
+
+create_faq("What does your model assume?", """Each candidate doesn't have the same path to victory. 
+            Most states are non-competitive, with some solidly blue or red. 
+            My model starts with the assumption that Biden begins with 221 electoral votes and Trump with 235. 
+            States like North Carolina and Florida, historically Republican and not currently competitive, are excluded from battleground status.
+            """)
+  
+        
