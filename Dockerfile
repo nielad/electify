@@ -8,5 +8,8 @@ WORKDIR /src
 COPY /src/ /src/
 
 RUN pip install -r requirements.txt
+RUN apt-get update \
+	&& apt-get install -y cron\
+	&& rm -rf /var/lib/apt/lists/*
 
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
