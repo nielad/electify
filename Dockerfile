@@ -13,7 +13,6 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /etc/crontabs \
     && chmod +x /src/get_current_polls.py \
-    && echo '* * * * * /usr/bin/python3 /src/get_current_polls.py' >> /etc/crontabs/root \
-	&& service cron start
+    && echo '* * * * * /usr/bin/python3 /src/get_current_polls.py' >> /etc/crontabs/root 
 
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
