@@ -18,6 +18,7 @@ st.write("Succesfully setup CI/CD ***********")
 st.write("all your base are belong to us")
 st.write("you have no chance to survive make your time***")
 st.write("badger, badger, badger...")
+st.write("...mushroom, mushroom!")
 st.write("""
 # Electify
 ## 2024 Election Forecasting
