@@ -33,14 +33,7 @@ jobs:
     - name: Run Docker Container
       run: docker run -d -p ${{secrets.PORT}}:${{secrets.PORT}} --name electify-container electify-image
 
-    - name: Create crontabs directory
-      run: docker exec electify-container mkdir -p /etc/crontabs
     
-    - name: Execute Cron Job in Docker Container
-      run: docker exec electify-container sh -c "echo '* * * * * /usr/bin/python3 /src/get_current_polls.py' >> /etc/crontabs/root"
-    
-    - name: Restart cron service
-      run: docker exec electify-container service cron restart
       
     - run: echo "🍏 This job's status is ${{ job.status }}."
     - run: echo "🎉🎉🎉🎉🎉"
