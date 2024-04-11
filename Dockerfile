@@ -17,5 +17,5 @@ RUN apt-get update \
 
  
 
-#CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
-CMD ["sh", "-c", "service cron start && streamlit run app.py --server.port=8501 --server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+#CMD ["sh", "-c", "service cron start && streamlit run app.py --server.port=8501 --server.address=0.0.0.0"]
