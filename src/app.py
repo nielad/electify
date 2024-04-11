@@ -169,7 +169,7 @@ st.write("Open the sidebar and adjust the polling spread sliders to see how the 
 df_2024_predictions_display = df_2024_predictions.applymap(to_percent_up)
 
 st.dataframe(df_2024_predictions_display)
-
+st.write("test")
 
 trump_paths = ast.literal_eval(df_paths_to_victory[df_paths_to_victory['candidate'] == 'Trump']['paths_to_victory'].iloc[0])
 trump_probs = df_2024_predictions['trump']
