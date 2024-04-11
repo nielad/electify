@@ -1,4 +1,5 @@
 name: Deploy to Server
+run-name: ${{ github.actor }} is deploying  🚀
 
 on:
   push:
@@ -10,7 +11,11 @@ jobs:
     runs-on: self-hosted  # Specifies that this job runs on a self-hosted runner
 
     steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     - uses: actions/checkout@v2  # Checks out your repository under $GITHUB_WORKSPACE
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
 
     - name: Build Docker Image
       run: docker build -t github-actions-test-image .
@@ -19,6 +24,5 @@ jobs:
       run: docker run -d -p ${{secrets.PORT}}:${{secrets.PORT}} --name electify-container electify-image
 
 
-      #run: docker run -d --name github-actions-test-container github-actions-test-image
-
+    - run: echo "🍏 This job's status is ${{ job.status }}."
 
