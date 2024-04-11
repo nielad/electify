@@ -142,6 +142,7 @@ def load_model():
 	return rfc
 	
 st.sidebar.header('Polling Spread')
+st.sidebar.image('images/android-chrome-192x192.png')
 arizona, georgia, michigan, nevada, pennsylvania, wisconsin = create_polling_spread_input()
 user_input_raw_list = [arizona, georgia, michigan, nevada, pennsylvania, wisconsin]
 
