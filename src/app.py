@@ -5,6 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 import ast
 import math
 
+st.set_page_config(page_title="Electify", page_icon="images/favicon.webp")
+
 df_2024 = pd.read_csv("other_data/presidential predict data 2024.csv")
 df_train = pd.read_csv("other_data/presidential election training data 2000-2020.csv")
 df_paths_to_victory = pd.read_csv("other_data/paths_to_victory.csv")
