@@ -37,7 +37,7 @@ jobs:
       run: docker exec electify-container mkdir -p /etc/crontabs
     
     - name: Execute Cron Job in Docker Container
-      run: docker exec electify-container sh -c "echo '/5 * * * * python get_current_polls.py' >> /etc/crontabs/root"
+      run: docker exec electify-container sh -c "echo '*/5 * * * * python get_current_polls.py' >> /etc/crontabs/root"
 
     - run: echo "🍏 This job's status is ${{ job.status }}."
     - run: echo "🎉🎉🎉🎉🎉"
