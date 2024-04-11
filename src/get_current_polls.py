@@ -123,6 +123,6 @@ rcp_data = extract_poll_data()
 df = pd.DataFrame(rcp_data)
 df['dem_poll_advantage'] = df.apply(lambda row: -float(row['spread_value']) if row['spread_name'] == 'Trump' else row['spread_value'], axis=1)
 
-df.to_csv("other_data/daily_state_polling_averages.csv", index = False)
+df.to_csv("/src/other_data/daily_state_polling_averages.csv", index = False)
 print("Dataframe read to other_data/daily_state_polling_averages.csv")
 print(os.getcwd())
