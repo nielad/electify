@@ -17,14 +17,14 @@ battleground_states = {'Wisconsin' : 'https://www.realclearpolitics.com/poll/rac
                        'Michigan' : 'https://www.realclearpolitics.com/poll/race/7953/polling_data.json'}
 
 def download_rcp_files():
-    if not os.path.exists('rcp_data'):
-        os.makedirs('rcp_data')
+    if not os.path.exists('/src/rcp_data'):
+        os.makedirs('/src/rcp_data')
     move_old_files()
     # send http request to the RCP json file
     for state, url in battleground_states.items():
         send_http_request(url, state)
 def move_old_files():
-    directory = 'rcp_data'
+    directory = '/src/rcp_data'
     old_directory = os.path.join(directory, 'old_polling_data')
     if not os.path.exists(old_directory):
         os.makedirs(old_directory)
@@ -64,7 +64,7 @@ def extract_poll_data():
 
 
     # Define the directory where JSON files are stored
-    directory = 'rcp_data'
+    directory = '/src/rcp_data'
     poll_list = []
     
     # Iterate over each file in the directory
