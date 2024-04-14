@@ -162,8 +162,9 @@ df_2024_predictions.index = df_2024_predictions.index.str.replace('_2024', '')
 df_2024_predictions.index.name = ''
 
 st.write(""" ### State Probabilities""")
-st.write("The default values are based on real time polling average by state.")
 st.write("Open the sidebar and adjust the polling spread sliders to see how the odds are impacted")
+st.write("The default values of the slider are real time polling average by state.")
+
  
 
 df_2024_predictions_display = df_2024_predictions.applymap(to_percent_up)
@@ -193,8 +194,8 @@ def create_faq_link(question, answer, link, link_label, formula):
         if formula != "":
             st.latex(r'''
             \text{Probablity (Winning path to victory) =} \newline
-            P(A \cap B \cap \neg C) = P(A) \times P(B) \times (1- P(C))\newline \newline
-            Probability(Winning the election) = \newline
+            P(A \cap B \cap \neg C) = P(A) \times P(B) \times (1- P(C))\newline \newline \newline
+            \text{Probability(Winning the election) = }\newline
             \sum_{i=1}^{n} a_i \newline
             \text{where } a_i = \text {a path to victory}
             ''')
