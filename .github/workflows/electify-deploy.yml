@@ -1,0 +1,41 @@
+name: Deploy to Server
+run-name: ${{ github.actor }} is deploying  🚀
+
+on:
+  push:
+    branches:
+      - nielad-patch-1 # or any branch you use for deployment
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # Specifies that this job runs on a self-hosted runner
+
+    steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - uses: actions/checkout@v2  # Checks out your repository under $GITHUB_WORKSPACE
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+
+    - name: Build Docker Image
+      run: docker build -t electify-image .
+    - run: echo "🎉"
+
+
+    - name: Stop Docker Container
+      run: docker stop electify-container
+    - run: echo "🎉"
+      
+    - name: Remove Existing Container
+      run: docker rm electify-container
+    - run: echo "🎉"
+
+    - name: Run Docker Container
+      run: docker run -d -p ${{secrets.PORT}}:${{secrets.PORT}} --name electify-container electify-image
+
+    
+      
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+    - run: echo "🎉🎉🎉🎉🎉"
+
+

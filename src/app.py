@@ -5,6 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 import ast
 import math
 
+st.set_page_config(page_title="Electify", page_icon="images/favicon.webp")
+
 df_2024 = pd.read_csv("other_data/presidential predict data 2024.csv")
 df_train = pd.read_csv("other_data/presidential election training data 2000-2020.csv")
 df_paths_to_victory = pd.read_csv("other_data/paths_to_victory.csv")
@@ -14,9 +16,12 @@ df_2024.set_index('state_year', inplace=True)
 state_poll_dict = df_2024['dem_poll_advantage'].to_dict()
 state_poll_dict = {key.split("_")[0]: value for key, value in state_poll_dict.items()}
 
+
+st.image('images/android-chrome-192x192.png')
+
 st.write("""
 # Electify
-## 2024 Election Forecasting
+## 2024 Presidential Election Forecasting
 
 """)
 
@@ -156,19 +161,49 @@ df_2024_predictions = pd.DataFrame(predict_prob, columns=['biden', 'trump'], ind
 df_2024_predictions.index = df_2024_predictions.index.str.replace('_2024', '')
 df_2024_predictions.index.name = ''
 
-st.write(""" ### Probability of winning each state""")
+st.write(""" ### State Probabilities""")
+st.write("The default values are based on real time polling average by state.")
+st.write("Open the sidebar and adjust the polling spread sliders to see how the odds are impacted")
+ 
 
 df_2024_predictions_display = df_2024_predictions.applymap(to_percent_up)
 
 st.dataframe(df_2024_predictions_display)
-
 
 trump_paths = ast.literal_eval(df_paths_to_victory[df_paths_to_victory['candidate'] == 'Trump']['paths_to_victory'].iloc[0])
 trump_probs = df_2024_predictions['trump']
 biden_paths = ast.literal_eval(df_paths_to_victory[df_paths_to_victory['candidate'] == 'Biden']['paths_to_victory'].iloc[0])
 biden_probs = df_2024_predictions['biden']
 
-st.write(""" ### Probability of winning the presidential election""")
+st.write(""" ### Total chances of winning""")
 
 st.write("Trump probability of winning: " + str(to_percent_up(find_total_prob_of_winning(trump_paths, trump_probs))))
 st.write("Biden probability of winning: " + str(to_percent_up(find_total_prob_of_winning(biden_paths, biden_probs))))
+
+def create_faq(question, answer):
+
+    with st.expander(question):
+        st.write(answer)
+    return
+
+create_faq("What does your model assume?", """Each candidate doesn't have the same path to victory. 
+            Most states are non-competitive, with some solidly blue or red.  States like North Carolina and Florida, 
+            historically Republican and not currently competitive, are excluded from battleground status.
+            My model starts with the assumption that Biden begins with 221 electoral votes and Trump with 235. 
+            
+            """)
+
+create_faq("What data did you use to train the model?", """
+The model is trained on data from 21 competitive states across the past six presidential election cycles (since 2000), 
+including factors like race, ethnicity, cost of voting, median income, college education, and pre-election polling averages.
+""")
+  
+create_faq("Where are you getting your polling averages?", """
+Real Clear Politics provides accessible polling averages for the past 24 years for the states used in model training.
+""")
+create_faq("How does the model work?", """
+The model utilizes a Random Forest Classifier with an F1-score of ~90%. Training data (80% of 126 rows) fits the model, while testing data (remaining 20%) checks accuracy. To predict the current cycle, the model is refitted with all previous election state data,
+ predicting each state's probability of victory path based on the probability of each state being part of or not part of that path.
+ The total probability is then calculated.
+ """)
+        
