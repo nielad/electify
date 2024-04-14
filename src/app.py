@@ -192,7 +192,11 @@ def create_faq_link(question, answer, link, link_label, formula):
         st.write(answer)
         if formula != "":
             st.latex(r'''
-            P(A \cap B \cap \ldots \neg N) = P(A) \times P(B) \times \ldots (1- P(N))
+            \text{Probablity (Winning path to victory) =} \newline
+            P(A \cap B \cap \neg C) = P(A) \times P(B) \times (1- P(C))\newline \newline
+            Probability(Winning the election) = \newline
+            \sum_{i=1}^{n} a_i \newline
+            \text{where } a_i = \text {a path to victory}
             ''')
         if link != "":
             st.page_link(link, label = link_label)
@@ -205,9 +209,9 @@ create_faq_link("How does the model work?", """
 
             The more technical explanation is that the  model uses a 80/20 training-test split and has an F1-score of around 90%. 
             To predict the current cycle, the model is refitted with the previous test data
-             and predicts each candidate's probability of winning each of the six battleground states.  
+             and predicts each candidate's probability of winning each of the six battleground states. \n  
              US Presidents are chosen by the elctoral college system, and the candidate with 270 electoral college votes
-             wins. Each candidate has a path to victory and the probability of that path is calculated by the intersection of events formula.              
+             wins the election. Each candidate has a path to victory and the probability of that path is calculated by the intersection of events formula.              
              The total probability is found by summing the probability of each path to victory.
 
               """, "https://youtu.be/gkXX4h3qYm4?si=Nm-sTC43Lj1IHKXj", "What is Random Forest? :link:", "formula")
@@ -231,7 +235,7 @@ Real Clear Politics
 """)
 
 create_faq("What are some other characteristics of the model?", """
-The model treats each state-year mapping independently. Arizona in 2004 data is handled the same as Wisconsin in 2016. The name of the state and the year is not an x variable. 
+The model treats each state-year mapping independently. Arizona in 2004 is handled the same as Wisconsin in 2016. The name of the state and the year is not an x variable. 
 In other words, it doesn't track trends of battleground states. It also doesn't forecast uncertainty, though in the future I'll probably
 add a monte carlo simulation for polling spread  due to its variablity.  \n
 
