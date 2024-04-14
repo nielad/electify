@@ -237,5 +237,5 @@ add a monte carlo simulation for polling spread  due to its variablity.  \n
 The model distinguishes the outcome as binary: either a Democrat won or didn't win. It doesn't reflect individual candidates or platforms or political philosophies. 
 """)
 
- st.write("created by Daniel Foster.")
- st.page_link("http://github.com/nielad/electify", label = "Github")
+st.write("created by Daniel Foster.")
+st.page_link("http://github.com/nielad/electify", label = "Github")
