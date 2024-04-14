@@ -210,9 +210,9 @@ create_faq_link("How does the model work?", """
 
             The more technical explanation is that the  model uses a 80/20 training-test split and has an F1-score of around 90%. 
             To predict the current cycle, the model is refitted with the previous test data
-             and predicts each candidate's probability of winning each of the six battleground states. \n  
-             US Presidents are chosen by the elctoral college system, and the candidate with 270 electoral college votes
-             wins the election. Each candidate has a path to victory and the probability of that path is calculated by the intersection of events formula.              
+             and predicts each candidate's probability of winning each of the six battleground states. \n              
+             US Presidents are chosen by the electoral college system and the candidate with 270 electoral college votes
+             wins the election. Each candidate has multiple paths to victory and the probability of each path is calculated by the intersection of events formula.              
              The total probability is found by summing the probability of each path to victory.
 
               """, "https://youtu.be/gkXX4h3qYm4?si=Nm-sTC43Lj1IHKXj", "What is Random Forest? :link:", "formula")
@@ -227,7 +227,7 @@ create_faq("What does your model assume?", """
             """)
 
 create_faq("What data did you use to train the model?", """
-The model is trained on data from 21 competitive states across the past six presidential election cycles (since 2000), 
+The model is trained on data from 21 states over the past six presidential election cycles (since 2000), 
 including factors like race and ethnicity, cost of voting, median income, college education, and day-of-election polling averages. 
 """)
   
