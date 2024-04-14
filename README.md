@@ -1,2 +1,2 @@
 # electify
- applying random forest to forecasting the presidential election
+ Random Forest for presidential election forecasting
