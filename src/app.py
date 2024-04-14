@@ -190,12 +190,13 @@ def create_faq_link(question, answer, link, link_label, formula):
 
     with st.expander(question):
         st.write(answer)
-        if link != "":
-            st.page_link(link, label = link_label)
         if formula != "":
             st.latex(r'''
-            P(A \cap B \cap \ldots \neg N) = P(A) \times P(B) \times \ldots... (1- P(N))
+            P(A \cap B \cap \ldots \neg N) = P(A) \times P(B) \times \ldots (1- P(N))
             ''')
+        if link != "":
+            st.page_link(link, label = link_label)
+        
         
     return
     
@@ -209,7 +210,7 @@ create_faq_link("How does the model work?", """
              wins. Each candidate has a path to victory and the probability of that path is calculated by the intersection of events formula.              
              The total probability is found by summing the probability of each path to victory.
 
-              """, "https://youtu.be/gkXX4h3qYm4?si=Nm-sTC43Lj1IHKXj", "What is Random Forest?", "formula")
+              """, "https://youtu.be/gkXX4h3qYm4?si=Nm-sTC43Lj1IHKXj", "What is Random Forest? :link:", "formula")
 
 create_faq("What does your model assume?", """
             Each candidate doesn't have the same path to victory. 
@@ -238,4 +239,4 @@ The model distinguishes the outcome as binary: either a Democrat won or didn't w
 """)
 
 st.write("created by Daniel Foster.")
-st.page_link("http://github.com/nielad/electify", label = "Github")
+st.page_link("http://github.com/nielad/electify", label = "Github :link:")
