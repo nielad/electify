@@ -162,8 +162,9 @@ df_2024_predictions.index = df_2024_predictions.index.str.replace('_2024', '')
 df_2024_predictions.index.name = ''
 
 st.write(""" ### State Probabilities""")
-st.write("The default values are based on real time polling average by state.")
 st.write("Open the sidebar and adjust the polling spread sliders to see how the odds are impacted")
+st.write("The default values of the slider are real time polling average by state.")
+
  
 
 df_2024_predictions_display = df_2024_predictions.applymap(to_percent_up)
@@ -184,26 +185,63 @@ def create_faq(question, answer):
 
     with st.expander(question):
         st.write(answer)
+        
     return
+def create_faq_link(question, answer, link, link_label, formula):
 
-create_faq("What does your model assume?", """Each candidate doesn't have the same path to victory. 
+    with st.expander(question):
+        st.write(answer)
+        if formula != "":
+            st.latex(r'''
+            \text{Probablity (Winning path to victory) =} \newline
+            P(A \cap B \cap \neg C) = P(A) \times P(B) \times (1- P(C))\newline \newline \newline
+            \text{Probability(Winning the election) = }\newline
+            \sum_{i=1}^{n} a_i \newline
+            \text{where } a_i = \text {a path to victory}
+            ''')
+        if link != "":
+            st.page_link(link, label = link_label)
+        
+        
+    return
+    
+create_faq_link("How does the model work?", """
+            The model uses a machine learning method called Random Forest. A gentle, non-math introduction to Random Forest can be found in the link below.
+
+            The more technical explanation is that the  model uses a 80/20 training-test split and has an F1-score of around 90%. 
+            To predict the current cycle, the model is refitted with the previous test data
+             and predicts each candidate's probability of winning each of the six battleground states. \n              
+             US Presidents are chosen by the electoral college system and the candidate with 270 electoral college votes
+             wins the election. Each candidate has multiple paths to victory and the probability of each path is calculated by the intersection of events formula.              
+             The total probability is found by summing the probability of each path to victory.
+
+              """, "https://youtu.be/gkXX4h3qYm4?si=Nm-sTC43Lj1IHKXj", "What is Random Forest? :link:", "formula")
+
+create_faq("What does your model assume?", """
+            Each candidate doesn't have the same path to victory. 
             Most states are non-competitive, with some solidly blue or red.  States like North Carolina and Florida, 
             historically Republican and not currently competitive, are excluded from battleground status.
-            My model starts with the assumption that Biden begins with 221 electoral votes and Trump with 235. 
+            The model assumes that Biden's safe states give him 221 electoral votes and Trump's safe states give him 235. Thus, Biden has
+            fewer paths to victory.
             
             """)
 
 create_faq("What data did you use to train the model?", """
-The model is trained on data from 21 competitive states across the past six presidential election cycles (since 2000), 
-including factors like race, ethnicity, cost of voting, median income, college education, and pre-election polling averages.
+The model is trained on data from 21 states over the past six presidential election cycles (since 2000), 
+including factors like race and ethnicity, cost of voting, median income, college education, and day-of-election polling averages. 
 """)
   
 create_faq("Where are you getting your polling averages?", """
-Real Clear Politics provides accessible polling averages for the past 24 years for the states used in model training.
+Real Clear Politics
 """)
-create_faq("How does the model work?", """
-The model utilizes a Random Forest Classifier with an F1-score of ~90%. Training data (80% of 126 rows) fits the model, while testing data (remaining 20%) checks accuracy. To predict the current cycle, the model is refitted with all previous election state data,
- predicting each state's probability of victory path based on the probability of each state being part of or not part of that path.
- The total probability is then calculated.
- """)
-        
+
+create_faq("What are some other characteristics of the model?", """
+The model treats each state-year mapping independently. Arizona in 2004 is handled the same as Wisconsin in 2016. The name of the state and the year is not an x variable. 
+In other words, it doesn't track trends of battleground states. It also doesn't forecast uncertainty, though in the future I'll probably
+add a monte carlo simulation for polling spread  due to its variablity.  \n
+
+The model distinguishes the outcome as binary: either a Democrat won or didn't win. It doesn't reflect individual candidates or platforms or political philosophies. 
+""")
+
+st.write("created by Daniel Foster.")
+st.page_link("http://github.com/nielad/electify", label = "Github :link:")
