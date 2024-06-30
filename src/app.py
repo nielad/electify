@@ -36,10 +36,7 @@ def create_state_slider_options(integers_list, state_spread):
 	# and the corresponding candidate letter
 	strings_list = [("B+" + str(num).split("-")[1]) if num < 0 else ("T+" + str(num) if num > 0 else "0") for num in integers_list]
 	
-	#if state_spread > 0:
-		#strings_list[9] = "0"
-	#else:
-		#strings_list[10] = "0"
+
 	
 	
 	strings_list.insert(0, "Biden")
@@ -80,8 +77,7 @@ def create_slider_params(state):
 	int_list = create_state_slider_int_list(state_spread, opts=True)
 	
 	options = create_state_slider_options(int_list, state_spread)
-	st.write(state)
-	st.write(options)
+
 	return st.sidebar.select_slider(state, options = options, value = val)
 
 
