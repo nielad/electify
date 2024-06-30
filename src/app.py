@@ -73,7 +73,7 @@ def create_slider_params(state):
 	elif state_spread > 0:
 		val = 'B+' + str(state_spread)
 	elif state_spread == 0:
-		val = 'Tie'
+		val = ''
 	
 	# ...which is why we flip the state_spread sign,
 	state_spread *= -1
