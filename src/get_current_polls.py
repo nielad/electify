@@ -107,7 +107,7 @@ def extract_poll_data_helper(data):
     spread_value = poll_data[0]['spread']['value']
 	if spread_value == "":
 	    spread_value = '+0'
-	print("worked")
+	print("worked yay")
     poll_dict = {'id' : poll_id, 
                  'last_poll_date' : second_date,
                  'trump' : trump_value,
