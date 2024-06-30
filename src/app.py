@@ -36,10 +36,10 @@ def create_state_slider_options(integers_list, state_spread):
 	# and the corresponding candidate letter
 	strings_list = [("B+" + str(num).split("-")[1]) if num < 0 else ("T+" + str(num) if num > 0 else "0") for num in integers_list]
 	
-	if state_spread > 0:
-		strings_list[9] = "0"
-	else:
-		strings_list[10] = "0"
+	#if state_spread > 0:
+		#strings_list[9] = "0"
+	#else:
+		#strings_list[10] = "0"
 	
 	
 	strings_list.insert(0, "Biden")
@@ -73,9 +73,9 @@ def create_slider_params(state):
 	elif state_spread > 0:
 		val = 'B+' + str(state_spread)
 	elif state_spread == 0:
-		val = ''
+		val = '0'
 	
-	# ...which is why we flip the state_spread sign,
+	# ... flip the state_spread sign,
 	state_spread *= -1
 	int_list = create_state_slider_int_list(state_spread, opts=True)
 	
