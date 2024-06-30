@@ -80,7 +80,7 @@ def create_slider_params(state):
 	int_list = create_state_slider_int_list(state_spread, opts=True)
 	
 	options = create_state_slider_options(int_list, state_spread)
-	print(options)
+	st.write(options)
 	return st.sidebar.select_slider(state, options = options, value = val)
 
 
