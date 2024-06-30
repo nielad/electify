@@ -23,7 +23,7 @@ jobs:
 
 
     - name: Stop Docker Container
-      run: docker stop electify-container
+      run: docker stop electify-container || true
     - run: echo "🎉"
       
     - name: Remove Existing Container
