@@ -54,7 +54,7 @@ def send_http_request(url, state):
 
 def write_file(state, response):
     state_title = f'{state}_polling_data_{current_date}.json'
-    filename = os.path.join('rcp_data', state_title)
+    filename = os.path.join('/src/rcp_data', state_title)
     with open(filename, 'wb') as file:
         file.write(response.content)
         print(f"Downloaded {state} polling data")
